@@ -1,4 +1,3 @@
-/* src/TextAnalyzer.module.css */
 .container {
   display: flex;
   flex-direction: column;
@@ -95,4 +94,27 @@
 .iconButton.active {
   background: #000;
   cursor: pointer;
+}
+
+.result {
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  width: fit-content;
+}
+
+.positive {
+  background-color: #28a745; /* Green */
+}
+
+.neutral {
+  background-color: #ffc107; /* Yellow */
+  color: #000; /* Change text color to black for better contrast */
+}
+
+.negative {
+  background-color: #dc3545; /* Red */
 }

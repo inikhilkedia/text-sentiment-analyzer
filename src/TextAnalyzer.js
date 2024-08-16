@@ -1,4 +1,3 @@
-// src/TextAnalyzer.js
 import React, { useState, useCallback } from "react";
 import styles from "./TextAnalyzer.module.css";
 import { ArrowUp, ChevronDown } from "react-feather"; // Import Feather Icons
@@ -65,6 +64,19 @@ const TextAnalyzer = () => {
     setCurrentUser(e.target.value);
   };
 
+  const getResultStyle = (result) => {
+    switch (result) {
+      case "positive":
+        return styles.positive;
+      case "neutral":
+        return styles.neutral;
+      case "negative":
+        return styles.negative;
+      default:
+        return "";
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.userDropdown}>
@@ -96,8 +108,10 @@ const TextAnalyzer = () => {
         </button>
       </div>
       {analysisResult && (
-        <div style={{ marginTop: "20px" }}>
-          <p>{analysisResult}</p>
+        <div className={`${styles.result} ${getResultStyle(analysisResult)}`}>
+          <p>
+            {analysisResult.charAt(0).toUpperCase() + analysisResult.slice(1)}
+          </p>
         </div>
       )}
     </div>
