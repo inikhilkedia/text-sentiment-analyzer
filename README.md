@@ -1,7 +1,3 @@
-Sure! Here's a sample `README.md` file you can use for your GitHub repository:
-
----
-
 # Cynch AI Text Analyzer
 
 This project is a simple web application built with React and Node.js/Express that serves as a frontend to a mock AI service for analyzing text data. The application allows users to input text and receive a simulated sentiment analysis of the text (positive, neutral, or negative).
@@ -117,7 +113,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - [Feather Icons](https://feathericons.com/) for the icon set.
 - [React](https://reactjs.org/) and [Node.js](https://nodejs.org/) communities for providing great tools and frameworks.
-
----
-
-Feel free to customize this `README.md` file to better fit your project details and personal preferences!
