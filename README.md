@@ -2,6 +2,8 @@
 
 This project is a simple web application built with React and Node.js/Express that serves as a frontend to a mock AI service for analyzing text data. The application allows users to input text and receive a simulated sentiment analysis of the text (positive, neutral, or negative).
 
+![Screenshot](text-analyzer.png)
+
 ## Features
 
 - **User Interface:** Clean and modern UI designed based on Figma mockups.

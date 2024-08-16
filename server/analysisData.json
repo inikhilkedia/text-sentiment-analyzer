@@ -174,5 +174,9 @@
   {
     "text": "Hi! My name is Nikhil Kedia.",
     "result": "neutral"
+  },
+  {
+    "text": "Let’s review the progress for Michael Scott",
+    "result": "positive"
   }
 ]
