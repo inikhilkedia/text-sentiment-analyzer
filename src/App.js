@@ -1,5 +1,6 @@
-import React, { useCallback, lazy, Suspense, useReducer } from "react";
+import React, { useCallback, lazy, Suspense } from "react";
 import styles from "./App.module.css";
+import { useTextAnalyzer } from "./hooks/useTextAnalyzer";
 
 const Header = lazy(() => import("./components/Header/Header"));
 const UserDropdown = lazy(() =>
@@ -13,86 +14,47 @@ const UserAnalyses = lazy(() =>
   import("./components/UserAnalyses/UserAnalyses")
 );
 
-const initialState = {
-  userInput: "",
-  analysisResult: "",
-  currentUser: "Admin",
-  analyses: {
-    Admin: [],
-    User1: [],
-    User2: [],
-  },
-};
-
-function reducer(state, action) {
-  switch (action.type) {
-    case "SET_USER_INPUT":
-      return {
-        ...state,
-        userInput: action.payload,
-      };
-    case "SET_ANALYSIS_RESULT":
-      return {
-        ...state,
-        analysisResult: action.payload,
-      };
-    case "SET_CURRENT_USER":
-      return {
-        ...state,
-        currentUser: action.payload,
-        userInput: "",
-      };
-    case "ADD_ANALYSIS":
-      const updatedAnalyses = {
-        ...state.analyses,
-        [state.currentUser]: [
-          ...state.analyses[state.currentUser],
-          { text: state.userInput, result: state.analysisResult },
-        ],
-      };
-      return {
-        ...state,
-        analyses: updatedAnalyses,
-      };
-    default:
-      return state;
-  }
-}
-
 const App = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const {
+    state,
+    setUserInput,
+    setAnalysisResult,
+    setCurrentUser,
+    addAnalysis,
+    resetAnalysisResult,
+  } = useTextAnalyzer(); // Use the custom hook
 
-  const handleInputChange = useCallback(async (e) => {
-    const text = e.target.value;
-    dispatch({ type: "SET_USER_INPUT", payload: text });
+  const handleInputChange = useCallback(
+    async (e) => {
+      const text = e.target.value;
+      setUserInput(text);
 
-    if (text) {
-      try {
-        const response = await fetch("http://localhost:3002/api/analyze", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ text }),
-        });
+      if (text) {
+        try {
+          const response = await fetch("http://localhost:3002/api/analyze", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ text }),
+          });
 
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+
+          const data = await response.json();
+          setAnalysisResult(data.result);
+        } catch (error) {
+          console.error("Error analyzing text:", error);
+          setAnalysisResult("Error occurred while analyzing text.");
         }
-
-        const data = await response.json();
-        dispatch({ type: "SET_ANALYSIS_RESULT", payload: data.result });
-      } catch (error) {
-        console.error("Error analyzing text:", error);
-        dispatch({
-          type: "SET_ANALYSIS_RESULT",
-          payload: "Error occurred while analyzing text.",
-        });
+      } else {
+        resetAnalysisResult();
       }
-    } else {
-      dispatch({ type: "RESET_ANALYSIS_RESULT" });
-    }
-  }, []);
+    },
+    [setUserInput, setAnalysisResult, resetAnalysisResult]
+  );
 
   const handleSubmit = useCallback(async () => {
     if (!state.userInput || !state.analysisResult) return;
@@ -116,19 +78,23 @@ const App = () => {
 
       const data = await response.json();
       if (data.success) {
-        dispatch({ type: "ADD_ANALYSIS" });
-        dispatch({ type: "SET_USER_INPUT", payload: "" });
+        addAnalysis();
+        setUserInput(""); // Clear the input after submission
       }
     } catch (error) {
       console.error("Error saving analysis data:", error);
     }
-  }, [state.userInput, state.analysisResult, state.currentUser]);
+  }, [
+    state.userInput,
+    state.analysisResult,
+    state.currentUser,
+    addAnalysis,
+    setUserInput,
+  ]);
 
   const handleUserChange = (e) => {
-    dispatch({ type: "SET_CURRENT_USER", payload: e.target.value });
+    setCurrentUser(e.target.value);
   };
-
-  console.log(state);
 
   return (
     <div className={styles.container}>

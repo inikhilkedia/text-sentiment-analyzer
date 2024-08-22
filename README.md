@@ -20,13 +20,13 @@ This project is a React-based application that allows users to analyze text sent
 
 ## Demo
 
-![Screenshot](text-analyzer.png)
+![Screenshot](text-sentiment-analyzer.png)
 
 ## Features
 
-- **User-Specific Analysis**: Users can log in as different users, and each user's analysis history is stored and displayed.
-- **Text Sentiment Analysis**: Real-time text sentiment analysis using a simulated API.
-- **Responsive UI**: The app is responsive and works well on both desktop and mobile devices.
+- **User-Specific Analysis**: Users can select different user profiles, and each user's analysis history is stored and displayed.
+- **Text Sentiment Analysis**: Provides real-time sentiment analysis using a simulated API.
+- **Responsive UI**: The application is fully responsive, optimized for both desktop and mobile devices.
 - **Recent Analyses**: Displays the last three analyses performed by the current user.
 
 ## Installation
@@ -89,6 +89,8 @@ text-sentiment-analyzer/
 │   │   ├── ResultDisplay/      # Displays the analysis result
 │   │   ├── UserAnalyses/       # Displays user-specific analysis history
 │   │   └── UserDropdown/       # User selection dropdown
+│   ├── hooks/                  # Custom hooks
+│   │   └── useTextAnalyzer.js  # Custom hook for managing text analysis state
 │   ├── App.js                  # Main application component
 │   ├── App.module.css          # Global styles
 │   └── index.js                # Application entry point
@@ -112,7 +114,7 @@ text-sentiment-analyzer/
 ## API Endpoints
 
 - **`POST /api/analyze`**
-  - Description: Analyzes the text and returns a sentiment (positive, neutral, negative).
+  - Description: Analyzes the text and returns a sentiment (positive, neutral, or negative).
   - Request Body: `{ "text": "Your text here" }`
   - Response: `{ "result": "positive" }`
 
@@ -131,7 +133,3 @@ text-sentiment-analyzer/
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
----
-
-This version of the README file provides a detailed overview of your project, minus any references to Cynch AI. Feel free to modify or expand upon this template as needed!

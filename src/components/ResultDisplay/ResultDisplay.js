@@ -1,4 +1,4 @@
-import { useCallback, memo } from "react";
+import React, { useCallback, memo } from "react";
 import styles from "./ResultDisplay.module.css";
 
 const ResultDisplay = ({ analysisResult }) => {
