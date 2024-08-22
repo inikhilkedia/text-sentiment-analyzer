@@ -1,0 +1,20 @@
+.header {
+  color: rgba(0, 0, 0, 0.75);
+  text-align: center;
+  font-feature-settings: "liga" off, "clig" off;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 56px; /* 116.667% */
+}
+
+.subheader {
+  width: 480px;
+  color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  font-feature-settings: "liga" off, "clig" off;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 56px; /* 116.667% */
+}

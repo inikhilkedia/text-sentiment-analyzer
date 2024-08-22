@@ -3,7 +3,7 @@ const cors = require("cors");
 const fs = require("fs");
 const path = require("path");
 const app = express();
-const port = 3001;
+const port = 3002;
 
 app.use(cors());
 app.use(express.json());
@@ -18,17 +18,40 @@ const analyzeSentiment = (text) => {
 app.post("/api/analyze", (req, res) => {
   const { text } = req.body;
   const result = analyzeSentiment(text);
+  res.json({ result });
+});
 
-  // Store the text and result in a JSON file
+// API endpoint for saving analysis
+app.post("/api/save-analysis", (req, res) => {
+  const { user, text, result } = req.body;
   const data = { text, result };
   const filePath = path.join(__dirname, "analysisData.json");
 
   fs.readFile(filePath, "utf8", (err, fileData) => {
-    let analysisData = [];
-    if (!err && fileData) {
-      analysisData = JSON.parse(fileData);
+    let analysisData = {};
+
+    if (err) {
+      if (err.code === "ENOENT") {
+        analysisData = {};
+      } else {
+        return res.status(500).json({ error: "Failed to read analysis data" });
+      }
+    } else {
+      try {
+        analysisData = JSON.parse(fileData);
+      } catch (parseErr) {
+        console.error("Error parsing JSON:", parseErr);
+        return res.status(500).json({ error: "Failed to parse analysis data" });
+      }
     }
-    analysisData.push(data);
+
+    // If the user doesn't have any analyses yet, initialize their array
+    if (!analysisData[user]) {
+      analysisData[user] = [];
+    }
+
+    // Add the new analysis to the user's array
+    analysisData[user].push(data);
 
     fs.writeFile(
       filePath,
@@ -40,7 +63,7 @@ app.post("/api/analyze", (req, res) => {
             .status(500)
             .json({ error: "Failed to save analysis data" });
         }
-        res.json({ result });
+        res.json({ success: true });
       }
     );
   });

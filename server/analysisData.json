@@ -1,14 +1,10 @@
 [
   {
-    "text": "Hi! My name is Nikhil Kedia.",
-    "result": "negative"
+    "text": "a sfaa f",
+    "result": "neutral"
   },
   {
-    "text": "Hi! My name is Nikhil Kedia.",
-    "result": "negative"
-  },
-  {
-    "text": "Hi! My name is Nikhil Kedia.",
+    "text": "a sfasfa",
     "result": "positive"
   }
 ]
