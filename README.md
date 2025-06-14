@@ -2,7 +2,8 @@
 
 A modern, user-friendly web application that performs real-time sentiment analysis on text input. Built with React and Node.js, this application provides an intuitive interface for analyzing text sentiment while maintaining user-specific analysis history.
 
-![Screenshot](text-sentiment-analyzer.png)
+<img width="1456" alt="Screenshot 2025-06-13 at 11 57 09 PM" src="https://github.com/user-attachments/assets/546f86c4-e12a-4ffb-b8db-a6b0aff585ca" />
+
 
 ## 🌟 Features
 
