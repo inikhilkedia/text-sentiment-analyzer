@@ -39,6 +39,30 @@
         "score": -0.22258438714191975,
         "magnitude": 0.7236276115037519
       }
+    },
+    {
+      "text": "Hi! My name is Nikhil Kedia",
+      "result": {
+        "sentiment": "negative",
+        "score": -0.03768430828127389,
+        "magnitude": 0.9116602374306746
+      }
+    },
+    {
+      "text": "I live in Mountain View, CA",
+      "result": {
+        "sentiment": "neutral",
+        "score": 0.7262234372673539,
+        "magnitude": 0.5395982305422424
+      }
+    },
+    {
+      "text": "I'm a seasoned Frontend Engineer with 12+ Years of experience.",
+      "result": {
+        "sentiment": "neutral",
+        "score": -0.9772831787782352,
+        "magnitude": 0.48493777327194665
+      }
     }
   ]
 }
