@@ -1,47 +1,86 @@
 .userAnalyses {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-  width: 100%;
-  padding: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  overflow-y: auto; /* Make it scrollable */
-  max-height: 50vh; /* Limit the height to half of the viewport */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 20px;
+	width: 100%;
+	padding: 15px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	background-color: #f9f9f9;
+	border-radius: 10px;
+	overflow-x: auto;
 }
 
 .userAnalyses h3 {
-  margin-bottom: 15px;
-  font-size: 18px;
-  color: #333;
-  font-weight: 600;
-  text-align: center;
+	margin-bottom: 15px;
+	font-size: 18px;
+	color: #333;
+	font-weight: 600;
+	text-align: center;
 }
 
 .userAnalyses ul {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	width: 100%;
 }
 
 .userAnalyses li {
-  padding: 10px;
-  background-color: #fff;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+	padding: 10px;
+	background-color: #fff;
+	border-radius: 8px;
+	margin-bottom: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .userAnalyses li:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.analysesTable {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 10px;
+	background-color: white;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.analysesTable th,
+.analysesTable td {
+	padding: 12px;
+	text-align: left;
+	border-bottom: 1px solid #eee;
+}
+
+.analysesTable th {
+	background-color: #f5f5f5;
+	font-weight: 600;
+	color: #333;
+}
+
+.analysesTable tr:hover {
+	background-color: #f8f8f8;
+}
+
+.positive {
+	color: #2e7d32;
+	font-weight: 500;
+}
+
+.negative {
+	color: #c62828;
+	font-weight: 500;
+}
+
+.neutral {
+	color: #757575;
+	font-weight: 500;
 }

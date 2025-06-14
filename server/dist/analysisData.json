@@ -1,0 +1,44 @@
+{
+  "Admin": [
+    {
+      "text": "Hi! My name is Nikhil Kedia",
+      "result": {
+        "sentiment": "neutral",
+        "score": 0.8522362181718695,
+        "magnitude": 0.35624120309580953
+      }
+    },
+    {
+      "text": "Hi! My name is Nikhil Kedia.",
+      "result": {
+        "sentiment": "positive",
+        "score": -0.632829776473689,
+        "magnitude": 0.9007556182006937
+      }
+    },
+    {
+      "text": "Nice to meet you",
+      "result": {
+        "sentiment": "neutral",
+        "score": 0.11985230199334707,
+        "magnitude": 0.8064908721526729
+      }
+    },
+    {
+      "text": "af a",
+      "result": {
+        "sentiment": "negative",
+        "score": -0.21164932895432909,
+        "magnitude": 0.18762954491761774
+      }
+    },
+    {
+      "text": "Hi! My name is Nikhil Kedia",
+      "result": {
+        "sentiment": "neutral",
+        "score": -0.22258438714191975,
+        "magnitude": 0.7236276115037519
+      }
+    }
+  ]
+}

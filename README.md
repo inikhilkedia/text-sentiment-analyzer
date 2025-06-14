@@ -1,135 +1,263 @@
-# Text Sentiment Analyzer
+# Text Sentiment Analyzer 📊
 
-This project is a React-based application that allows users to analyze text sentiment (positive, neutral, or negative) through a simple user interface. The application includes a backend server that simulates text analysis and saves user-specific analysis results.
-
-## Table of Contents
-
-- [Text Sentiment Analyzer](#text-sentiment-analyzer)
-  - [Table of Contents](#table-of-contents)
-  - [Demo](#demo)
-  - [Features](#features)
-  - [Installation](#installation)
-    - [Prerequisites](#prerequisites)
-    - [Steps](#steps)
-  - [Usage](#usage)
-  - [Project Structure](#project-structure)
-  - [Technology Stack](#technology-stack)
-  - [API Endpoints](#api-endpoints)
-  - [Future Improvements](#future-improvements)
-  - [License](#license)
-
-## Demo
+A modern, user-friendly web application that performs real-time sentiment analysis on text input. Built with React and Node.js, this application provides an intuitive interface for analyzing text sentiment while maintaining user-specific analysis history.
 
 ![Screenshot](text-sentiment-analyzer.png)
 
-## Features
+## 🌟 Features
 
-- **User-Specific Analysis**: Users can select different user profiles, and each user's analysis history is stored and displayed.
-- **Text Sentiment Analysis**: Provides real-time sentiment analysis using a simulated API.
-- **Responsive UI**: The application is fully responsive, optimized for both desktop and mobile devices.
-- **Recent Analyses**: Displays the last three analyses performed by the current user.
+### Core Functionality
 
-## Installation
+- **Real-time Sentiment Analysis**: Instantly analyze text to determine if it's positive, neutral, or negative
+- **User Profile Management**: Switch between different user profiles to maintain separate analysis histories
+- **Analysis History**: View and track the last three analyses for each user
+- **Persistent Storage**: Analysis results are saved and persisted across sessions
+
+### Technical Features
+
+- **Responsive Design**: Optimized for all devices (desktop, tablet, and mobile)
+- **Modern UI/UX**: Clean, intuitive interface with smooth animations
+- **Real-time Updates**: Instant feedback on analysis results
+- **Error Handling**: Graceful error management and user notifications
+- **Performance Optimized**: Built with React best practices for optimal performance
+
+## 🚀 Quick Start
 
 ### Prerequisites
 
-- Node.js and npm/yarn installed on your machine.
+- Node.js (v14.0.0 or higher)
+- npm (v6.0.0 or higher)
+- Modern web browser (Chrome, Firefox, Safari, or Edge)
 
-### Steps
+### Installation
 
-1. Clone the repository:
+1. **Clone the repository**
 
    ```bash
    git clone https://github.com/yourusername/text-sentiment-analyzer.git
    cd text-sentiment-analyzer
    ```
 
-2. Install dependencies for both frontend and backend:
+2. **Install dependencies**
 
    ```bash
    # Install frontend dependencies
    npm install
 
-   # Move to the server directory
-   cd server
-
    # Install backend dependencies
+   cd server
    npm install
+   cd ..
    ```
 
-3. Start the development servers:
+3. **Environment Setup**
 
    ```bash
-   # Start the backend server
-   npm run server
+   # Create a .env file in the root directory
+   touch .env
 
-   # In a separate terminal, start the frontend development server
-   npm start
+   # Add the following environment variables
+   PORT=3000
+   SERVER_PORT=3002
    ```
 
-   The frontend will be running at `http://localhost:3000` and the backend at `http://localhost:3002`.
+4. **Start the application**
 
-## Usage
+   ```bash
+   # Start both frontend and backend (in development mode)
+   npm run dev
 
-1. Navigate to `http://localhost:3000` in your web browser.
-2. Select a user from the dropdown.
-3. Enter text in the input field to analyze its sentiment.
-4. View the analysis result and the history of recent analyses.
+   # Or start them separately:
+   # Terminal 1 - Frontend
+   npm start
 
-## Project Structure
+   # Terminal 2 - Backend
+   npm run server
+   ```
+
+The application will be available at:
+
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:3002
+
+## 📖 Usage Guide
+
+1. **Select a User Profile**
+
+   - Click the user dropdown in the top-right corner
+   - Choose from available user profiles or create a new one
+
+2. **Analyze Text**
+
+   - Enter or paste your text in the input field
+   - Click "Analyze" or press Enter
+   - View the sentiment result and confidence score
+
+3. **View History**
+   - Recent analyses appear below the input field
+   - Each entry shows the text, sentiment, and timestamp
+   - Click on any history item to re-analyze
+
+## 🏗️ Project Structure
 
 ```
 text-sentiment-analyzer/
-│
-├── public/                     # Static assets
-├── src/                        # Frontend source files
-│   ├── components/             # Reusable components
-│   │   ├── Header/             # Header component
-│   │   ├── InputField/         # Input field component
-│   │   ├── ResultDisplay/      # Displays the analysis result
-│   │   ├── UserAnalyses/       # Displays user-specific analysis history
-│   │   └── UserDropdown/       # User selection dropdown
-│   ├── hooks/                  # Custom hooks
-│   │   └── useTextAnalyzer.js  # Custom hook for managing text analysis state
-│   ├── App.js                  # Main application component
-│   ├── App.module.css          # Global styles
-│   └── index.js                # Application entry point
-│
-├── server/                     # Backend server files
-│   ├── server.js               # Express server handling API requests
-│   └── analysisData.json       # File where analysis data is stored
-│
-├── README.md                   # Project documentation
-├── package.json                # Project metadata and dependencies
-└── ...                         # Other configuration files
+├── public/                     # Static assets and index.html
+├── src/                        # Frontend source code
+│   ├── components/            # React components
+│   │   ├── Header/           # Application header
+│   │   │   ├── Header.tsx
+│   │   │   └── Header.module.css
+│   │   ├── InputField/       # Text input component
+│   │   │   ├── InputField.tsx
+│   │   │   └── InputField.module.css
+│   │   ├── ResultDisplay/    # Analysis results display
+│   │   │   ├── ResultDisplay.tsx
+│   │   │   └── ResultDisplay.module.css
+│   │   ├── UserAnalyses/     # User history component
+│   │   │   ├── UserAnalyses.tsx
+│   │   │   └── UserAnalyses.module.css
+│   │   └── UserDropdown/     # User selection component
+│   │       ├── UserDropdown.tsx
+│   │       └── UserDropdown.module.css
+│   ├── hooks/                # Custom React hooks
+│   │   └── useTextAnalyzer.ts
+│   ├── types/                # TypeScript type definitions
+│   │   ├── analysis.types.ts
+│   │   └── user.types.ts
+│   ├── utils/                # Utility functions
+│   │   └── api.ts
+│   ├── styles/               # Global styles
+│   │   └── global.css
+│   ├── App.tsx              # Main application component
+│   └── index.tsx            # Application entry point
+├── server/                    # Backend server
+│   ├── routes/               # API route handlers
+│   │   └── analysis.routes.ts
+│   ├── middleware/           # Custom middleware
+│   │   └── error.middleware.ts
+│   ├── types/                # Server type definitions
+│   │   └── server.types.ts
+│   ├── utils/                # Server utilities
+│   │   └── analysis.utils.ts
+│   └── server.ts             # Express server setup
+├── tests/                    # Test files
+│   ├── components/           # Component tests
+│   └── utils/                # Utility tests
+├── tsconfig.json            # TypeScript configuration
+├── package.json             # Project metadata and dependencies
+└── .gitignore              # Git ignore rules
 ```
 
-## Technology Stack
+## 🛠️ Development
 
-- **Frontend**: React, JavaScript, CSS Modules, React Suspense, React Lazy
-- **Backend**: Node.js, Express.js
-- **Icons**: Feather Icons
-- **Version Control**: Git
+### TypeScript Configuration
 
-## API Endpoints
+The project uses TypeScript for both frontend and backend development. Key TypeScript features include:
 
-- **`POST /api/analyze`**
-  - Description: Analyzes the text and returns a sentiment (positive, neutral, or negative).
-  - Request Body: `{ "text": "Your text here" }`
-  - Response: `{ "result": "positive" }`
+- Strict type checking enabled
+- Modern ES6+ features
+- React with TypeScript support
+- Path aliases for cleaner imports
+- Separate configurations for frontend and backend
 
-- **`POST /api/save-analysis`**
-  - Description: Saves the analysis result for the current user.
-  - Request Body: `{ "user": "User1", "text": "Your text here", "result": "positive" }`
-  - Response: `{ "success": true }`
+### Available Scripts
 
-## Future Improvements
+```bash
+# Start development servers
+npm run dev
 
-- **Database Integration**: Replace the JSON file with a proper database for persistent data storage.
-- **User Authentication**: Implement user authentication to ensure each user's data is private.
-- **Real Sentiment Analysis**: Integrate with a real sentiment analysis API.
-- **UI Enhancements**: Improve the UI for better user experience, especially on mobile devices.
+# Type checking
+npm run type-check
 
-## License
+# Run tests
+npm test
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+# Build for production
+npm run build
+
+# Start production server
+npm run start:prod
+
+# Lint code
+npm run lint
+
+# Format code
+npm run format
+```
+
+### Code Style
+
+- Follow the included ESLint and TypeScript configuration
+- Use Prettier for code formatting
+- Write meaningful commit messages
+- Include tests for new features
+- Use proper TypeScript types and interfaces
+- Follow React TypeScript best practices
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+1. **Port already in use**
+
+   ```bash
+   # Find process using port 3000
+   lsof -i :3000
+   # Kill the process
+   kill -9 <PID>
+   ```
+
+2. **Dependencies issues**
+
+   ```bash
+   # Clear npm cache
+   npm cache clean --force
+   # Remove node_modules and reinstall
+   rm -rf node_modules
+   npm install
+   ```
+
+3. **Backend connection errors**
+   - Ensure the backend server is running
+   - Check if the correct port is set in .env
+   - Verify network connectivity
+
+## 🔮 Future Improvements
+
+- [ ] Implement real sentiment analysis using NLP APIs
+- [ ] Add user authentication and authorization
+- [ ] Integrate with a proper database (MongoDB/PostgreSQL)
+- [ ] Add support for batch text analysis
+- [ ] Implement export functionality for analysis history
+- [ ] Add dark mode support
+- [ ] Create a mobile app version
+- [ ] Add support for multiple languages
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👥 Authors
+
+- Your Name - Initial work - [YourGitHub](https://github.com/yourusername)
+
+## 🙏 Acknowledgments
+
+- React.js team for the amazing framework
+- Express.js for the backend framework
+- All contributors who have helped shape this project
+
+---
+
+⭐ Star this project if you find it useful!
