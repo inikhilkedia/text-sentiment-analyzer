@@ -39,7 +39,7 @@ app.use(cors());
 app.use(express.json());
 
 // Simulate sentiment analysis
-const analyzeSentiment = (text: string): AnalysisResult => {
+const analyzeSentiment = (_text: string): AnalysisResult => {
   const sentiments = ["positive", "neutral", "negative"] as const;
   const sentiment = sentiments[Math.floor(Math.random() * sentiments.length)];
   const score = Math.random() * 2 - 1; // Random score between -1 and 1

@@ -1,14 +1,6 @@
 import React, { useCallback, lazy, Suspense, ChangeEvent } from 'react';
 import styles from './App.module.css';
 import { useTextAnalyzer } from './hooks/useTextAnalyzer';
-import { Analysis } from './types';
-
-// Define types for our state
-interface AnalysisResult {
-	sentiment: string;
-	score: number;
-	magnitude: number;
-}
 
 const Header = lazy(() => import('./components/Header/Header'));
 const UserDropdown = lazy(
@@ -120,10 +112,7 @@ const App: React.FC = () => {
 					/>
 					<ResultDisplay analysisResult={state.analysisResult} />
 				</div>
-				<UserAnalyses
-					currentUser={state.currentUser}
-					analyses={state.analyses[state.currentUser] || []}
-				/>
+				<UserAnalyses analyses={state.analyses[state.currentUser] || []} />
 			</Suspense>
 		</div>
 	);

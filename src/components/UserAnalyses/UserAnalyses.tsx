@@ -3,11 +3,10 @@ import styles from './UserAnalyses.module.css';
 import { Analysis } from '../../types/index';
 
 interface Props {
-	currentUser: string;
 	analyses: Analysis[];
 }
 
-const UserAnalyses: React.FC<Props> = ({ currentUser, analyses }) => {
+const UserAnalyses: React.FC<Props> = ({ analyses }) => {
 	if (analyses.length === 0) {
 		return <div>No analyses found</div>;
 	}

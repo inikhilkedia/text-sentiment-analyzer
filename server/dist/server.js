@@ -7,12 +7,13 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
+const crypto_1 = __importDefault(require("crypto"));
 const app = (0, express_1.default)();
 const port = 3002;
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 // Simulate sentiment analysis
-const analyzeSentiment = (text) => {
+const analyzeSentiment = (_text) => {
     const sentiments = ["positive", "neutral", "negative"];
     const sentiment = sentiments[Math.floor(Math.random() * sentiments.length)];
     const score = Math.random() * 2 - 1; // Random score between -1 and 1
@@ -32,7 +33,13 @@ app.post("/api/analyze", (req, res) => {
 // API endpoint for saving analysis
 app.post("/api/save-analysis", (req, res) => {
     const { user, text, result } = req.body;
-    const data = { text, result };
+    const data = {
+        id: crypto_1.default.randomUUID(),
+        text,
+        result,
+        timestamp: new Date().toISOString(),
+        user
+    };
     const filePath = path_1.default.join(__dirname, "analysisData.json");
     fs_1.default.readFile(filePath, "utf8", (err, fileData) => {
         let analysisData = {};
