@@ -3,6 +3,7 @@ import cors from "cors";
 import fs from "fs";
 import path from "path";
 import crypto from "crypto";
+import rateLimit from "express-rate-limit";
 
 interface AnalysisResult {
   sentiment: 'positive' | 'negative' | 'neutral';
@@ -37,6 +38,15 @@ const port = 3002;
 
 app.use(cors());
 app.use(express.json());
+
+const limiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 10, // limit each IP to 10 requests per windowMs
+  message: { error: "Too many requests, please try again later." }
+});
+
+app.use("/api/analyze", limiter);
+app.use("/api/save-analysis", limiter);
 
 // Simulate sentiment analysis
 const analyzeSentiment = (_text: string): AnalysisResult => {

@@ -1,1 +1,0 @@
-import{r as s,j as e}from"./index-ZyrZ4X2P.js";const a="_header_1rqr5_1",t="_subheader_1rqr5_11",r={header:a,subheader:t},d=()=>e.jsxs("div",{children:[e.jsx("div",{className:r.header,children:"Text Sentiment Analyzer"}),e.jsx("div",{className:r.subheader,children:"Analyze the sentiment of your text"})]}),o=s.memo(d);export{o as default};
